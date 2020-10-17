@@ -9,13 +9,11 @@
 
 int matA[MAX][MAX]; 
 int matB[MAX][MAX]; 
-
 int matSumResult[MAX][MAX];
 int matDiffResult[MAX][MAX]; 
 int matProductResult[MAX][MAX]; 
-int turn0 = 0, turn1 = 0, turn2 = 0; 
 
-// int MAX = 0;
+int turn0 = 0, turn1 = 0, turn2 = 0; 
 
 void fillMatrix(int matrix[MAX][MAX]) {
     for(int i = 0; i < MAX; i++) {
@@ -83,8 +81,6 @@ int main() {
     
     // 0. Get the matrix size from the command line and assign it to MAX
     // Using #define MAX 4 for now...
-// 		printf("How large should the NxN matrices be? Enter an integer: ");
-// 		scanf("%d", &MAX);
 
     // 1. Fill the matrices (matA and matB) with random values.
     fillMatrix(matA);
@@ -95,7 +91,7 @@ int main() {
     printMatrix(matA);
     printf("Matrix B:\n");
     printMatrix(matB);
-    
+
     // 3. Create pthread_t objects for our threads.
     pthread_t threads[MAX];
 
