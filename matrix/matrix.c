@@ -132,6 +132,11 @@ int main() {
     printMatrix(matDiffResult);
     printf("Product:\n");
     printMatrix(matProductResult);
+		free(matA);
+		free(matB);
+		free(matSumResult);
+    free(matDiffResult);
+    free(matProductResult);
     return 0;
   
 }
