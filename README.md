@@ -1,17 +1,24 @@
 # Parallel Matrix Arithmetic
 
 ## Introduction
-Matrix.c performs parallel addition, subtraction, and multiplication using pThreads.
+Matrix.c performs parallel addition, subtraction, and multiplication on a matrix of any NxN size using pThreads.
 
 ### Run
 Once in the matrix, directory run
+
 `make`
 
 and then
 
 `./matrix`
 
+You are then prompted to enter an integer which represents the size of an NxN matrix.
+
 You should see an output that looks like this:
+
+`What NxN matrix size would you like? Please enter an integer N.`
+
+`4`
 
     Matrix A:
 
@@ -68,10 +75,3 @@ You should see an output that looks like this:
        86  104   98  156
 
        84   83   90  145
-   
-
-
-## Future work
-As of right now, it works with a fixed matrix size of 4. With dynamic
-allocation, I should get it to work with any NxN matrix.
-
