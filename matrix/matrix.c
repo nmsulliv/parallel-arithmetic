@@ -41,7 +41,8 @@ void* computeSum(void* args) {
 	int k = turn0++;
 	for (i = k ; i < (k + 1); i++) {
 		for (j = 0; j < MAX; j++) { 
-				matSumResult[i][j] = matA[i][j] + matB[i][j]; 
+			*((int*)matSumResult + i*MAX + j) = *(matA + i*MAX + j) + *(matB + i*MAX + j); 
+
 		}
 	}
 }
@@ -54,7 +55,7 @@ void* computeDiff(void* args) {
 	int k = turn1++;
 	for (i = k; i < (k + 1); i++) {
 		for (j = 0; j < MAX; j++) { 
-				matDiffResult[i][j] = matA[i][j] - matB[i][j]; 
+      	*((int*)matDiffResult + i*MAX + j) = *(matA + i*MAX + j) - *(matB + i*MAX + j); 
 		}
 	}
 }
@@ -68,7 +69,7 @@ void* computeProduct(void* args) {
 		for (i = k; i < (k + 1); i++) {
 			for (j = 0; j < MAX; j++) { 
 				for (m = 0; m < MAX; m++) {
-					matProductResult[i][j] += matA[i][m] * matB[m][j]; 
+          *((int*)matProductResult + i*MAX + j) += *(matA + i*MAX + m) * *(matB + m*MAX + j); 
 				}
 			}
 		}
