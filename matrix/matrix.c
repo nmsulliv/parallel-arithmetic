@@ -83,6 +83,13 @@ int main() {
     // 0. Get the matrix size from the command line and assign it to MAX
     // Using #define MAX 4 for now...
 
+    // 0.1 Dynamically allocate matrices.
+  	matA = (int *)malloc(MAX * MAX * sizeof(int));
+		matB = (int *)malloc(MAX * MAX * sizeof(int));
+		matSumResult = (int *)malloc(MAX * MAX * sizeof(int));
+    matDiffResult = (int *)malloc(MAX * MAX * sizeof(int));
+    matProductResult = (int *)malloc(MAX * MAX * sizeof(int));
+
     // 1. Fill the matrices (matA and matB) with random values.
     fillMatrix(matA);
     fillMatrix(matB);
