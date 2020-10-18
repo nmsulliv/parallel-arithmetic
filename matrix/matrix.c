@@ -7,11 +7,11 @@
 
 // Used this as a reference: https://www.geeksforgeeks.org/multiplication-of-matrix-using-threads/
 
-int matA[MAX][MAX]; 
-int matB[MAX][MAX]; 
-int matSumResult[MAX][MAX];
-int matDiffResult[MAX][MAX]; 
-int matProductResult[MAX][MAX]; 
+int* matA;
+int* matB;
+int* matSumResult;
+int* matDiffResult;
+int* matProductResult;
 
 int turn0 = 0, turn1 = 0, turn2 = 0; 
 
