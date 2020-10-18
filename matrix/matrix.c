@@ -17,7 +17,7 @@ int turn0 = 0, turn1 = 0, turn2 = 0;
 void fillMatrix(int* matrix) {
     for(int i = 0; i < MAX; i++) {
         for(int j = 0; j < MAX; j++) {
-						*(matrix + i*MAX + j) = rand()%10+1;
+			*(matrix + i*MAX + j) = rand()%10+1;
         }
     }
 }
@@ -54,7 +54,7 @@ void* computeDiff(void* args) {
 	int k = turn1++;
 	for (i = k; i < (k + 1); i++) {
 		for (j = 0; j < MAX; j++) { 
-      	*((int*)matDiffResult + i*MAX + j) = *(matA + i*MAX + j) - *(matB + i*MAX + j); 
+      		*((int*)matDiffResult + i*MAX + j) = *(matA + i*MAX + j) - *(matB + i*MAX + j); 
 		}
 	}
 }
@@ -68,7 +68,7 @@ void* computeProduct(void* args) {
 		for (i = k; i < (k + 1); i++) {
 			for (j = 0; j < MAX; j++) { 
 				for (m = 0; m < MAX; m++) {
-          *((int*)matProductResult + i*MAX + j) += *(matA + i*MAX + m) * *(matB + m*MAX + j); 
+          			*((int*)matProductResult + i*MAX + j) += *(matA + i*MAX + m) * *(matB + m*MAX + j); 
 				}
 			}
 		}
@@ -105,17 +105,16 @@ int main() {
     // 4. Create a thread for each cell of each matrix operation.
 		int i;
     for(i = 0; i < MAX; i++) {
-			  int* arg;
-        pthread_create(&threads[i], NULL, computeSum, (void*)(arg));
-			  pthread_create(&threads[i], NULL, computeDiff, (void*)(arg)); 
-        pthread_create(&threads[i], NULL, computeProduct, (void*)(arg));
-
+			int* arg;
+        	pthread_create(&threads[i], NULL, computeSum, (void*)(arg));
+			pthread_create(&threads[i], NULL, computeDiff, (void*)(arg)); 
+        	pthread_create(&threads[i], NULL, computeProduct, (void*)(arg));
 		}
     
     // 5. Wait for all threads to finish.
-		for (i = 0; i < MAX; i++) {
-			pthread_join(threads[i], NULL);  
-		}
+	for (i = 0; i < MAX; i++) {
+		pthread_join(threads[i], NULL);  
+	}
 
     // 6. Print the results.
     printf("Results:\n");
@@ -131,5 +130,4 @@ int main() {
     free(matDiffResult);
     free(matProductResult);
     return 0;
-  
 }
