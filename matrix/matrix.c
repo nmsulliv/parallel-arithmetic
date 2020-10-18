@@ -3,8 +3,6 @@
 #include <pthread.h>
 #include <time.h>
 
-#define MAX 4 
-
 // Used this as a reference: https://www.geeksforgeeks.org/multiplication-of-matrix-using-threads/
 
 int* matA;
@@ -13,6 +11,7 @@ int* matSumResult;
 int* matDiffResult;
 int* matProductResult;
 
+int MAX;
 int turn0 = 0, turn1 = 0, turn2 = 0; 
 
 void fillMatrix(int* matrix) {
@@ -75,18 +74,18 @@ void* computeProduct(void* args) {
 		}
 }
 
-// Spawn a thread to fill each cell in each result matrix.
-// How many threads will you spawn?
 int main() {
-    srand(time(0));  // Do Not Remove. Just ignore and continue below.
+    srand(time(0));  // Sets seed for call to random below.
     
     // 0. Get the matrix size from the command line and assign it to MAX
     // Using #define MAX 4 for now...
+    printf("What NxN matrix size would you like? Please enter an integer N.\n");
+    scanf("%d", &MAX);
 
     // 0.1 Dynamically allocate matrices.
-  	matA = (int *)malloc(MAX * MAX * sizeof(int));
-		matB = (int *)malloc(MAX * MAX * sizeof(int));
-		matSumResult = (int *)malloc(MAX * MAX * sizeof(int));
+    matA = (int *)malloc(MAX * MAX * sizeof(int));
+    matB = (int *)malloc(MAX * MAX * sizeof(int));
+    matSumResult = (int *)malloc(MAX * MAX * sizeof(int));
     matDiffResult = (int *)malloc(MAX * MAX * sizeof(int));
     matProductResult = (int *)malloc(MAX * MAX * sizeof(int));
 
@@ -112,12 +111,6 @@ int main() {
         pthread_create(&threads[i], NULL, computeProduct, (void*)(arg));
 
 		}
-    // You'll need to pass in the coordinates of the cell you want the thread
-    // to compute.
-    // 
-    // One way to do this is to malloc memory for the thread number i, populate the coordinates
-    // into that space, and pass that address to the thread. The thread will use that number to calcuate 
-    // its portion of the matrix. The thread will then have to free that space when it's done with what's in that memory.
     
     // 5. Wait for all threads to finish.
 		for (i = 0; i < MAX; i++) {
@@ -132,9 +125,9 @@ int main() {
     printMatrix(matDiffResult);
     printf("Product:\n");
     printMatrix(matProductResult);
-		free(matA);
-		free(matB);
-		free(matSumResult);
+    free(matA);
+    free(matB);
+    free(matSumResult);
     free(matDiffResult);
     free(matProductResult);
     return 0;
