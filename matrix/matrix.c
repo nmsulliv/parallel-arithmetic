@@ -15,18 +15,18 @@ int* matProductResult;
 
 int turn0 = 0, turn1 = 0, turn2 = 0; 
 
-void fillMatrix(int matrix[MAX][MAX]) {
+void fillMatrix(int* matrix) {
     for(int i = 0; i < MAX; i++) {
         for(int j = 0; j < MAX; j++) {
-            matrix[i][j] = rand()%10+1;
+						*(matrix + i*MAX + j) = rand()%10+1;
         }
     }
 }
 
-void printMatrix(int matrix[MAX][MAX]) {
+void printMatrix(int* matrix) {
     for(int i = 0; i < MAX; i++) {
         for(int j = 0; j < MAX; j++) {
-            printf("%5d", matrix[i][j]);
+            printf("%5d", *(matrix + i*MAX + j));
         }
         printf("\n");
     }
